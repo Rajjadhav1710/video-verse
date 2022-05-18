@@ -6,28 +6,69 @@ import HomeScreen from "./screens/homeScreen/HomeScreen";
 import LoginScreen from './screens/loginScreen/LoginScreen';
 import "./_app.scss";
 
-const App = () => {
+//react router setup
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from "react-router-dom";
 
-  const [sidebar,toggleSidebar]=useState(false);
+const Layout = ({ children }) => {
+  const [sidebar, toggleSidebar] = useState(false);
 
-  const handleToggleSidebar = ()=>toggleSidebar(value=>!value);
+  const handleToggleSidebar = () => toggleSidebar(value => !value);
 
   return (
-    // <>
-    //   <Header handleToggleSidebar={handleToggleSidebar}/>
-    //   <div className="app__container">
-        
-    //     <Sidebar 
-    //       sidebar={sidebar} 
-    //       handleToggleSidebar={handleToggleSidebar}
-    //     />
+    <>
+      <Header handleToggleSidebar={handleToggleSidebar} />
+      <div className="app__container">
 
-    //     <Container fluid className='app__main'>
-    //       <HomeScreen/>
-    //     </Container>
-    //   </div>
-    // </>
-    <LoginScreen/>
+        <Sidebar
+          sidebar={sidebar}
+          handleToggleSidebar={handleToggleSidebar}
+        />
+
+        <Container fluid className='app__main'>
+          {children}
+        </Container>
+      </div>
+    </>
+  );
+}
+
+const App = () => {
+
+  return (
+    <Router>
+      <Switch>{/* same concept of switch last case is default one */}
+
+        {/* home route */}
+        <Route path="/" exact>
+          <Layout>
+            <HomeScreen />
+          </Layout>
+        </Route>
+
+        {/* login route */}
+        <Route path="/auth">
+          <LoginScreen />
+        </Route>
+
+        {/* search route */}
+        <Route path="/search">
+          <Layout>
+            <h1>Search Results</h1>
+          </Layout>
+        </Route>
+
+        {/*catching invalid route:2 options:1.show 404 page or 2.redirect to valid route */}
+        {/* we will redirect to homepage */}
+        {/* Route without any path, is default route*/}
+        <Route>
+          <Redirect to="/"/>
+        </Route>
+      </Switch>
+    </Router>
   )
 }
 
