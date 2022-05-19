@@ -9,8 +9,9 @@ import "./_app.scss";
 //react router setup
 import {
   BrowserRouter as Router,
+  Routes,
   Route,
-  Switch
+  Navigate
 } from "react-router-dom";
 
 const Layout = ({ children }) => {
@@ -40,34 +41,53 @@ const App = () => {
 
   return (
     <Router>
-      <Switch>{/* same concept of switch last case is default one */}
+      <Routes>{/* same concept of switch last case is default one */}
 
-        {/* home route */}
-        <Route path="/" exact>
+        <Route path="/" element={
           <Layout>
             <HomeScreen />
           </Layout>
-        </Route>
+        }/>
+
+        <Route path="/auth" element={<LoginScreen />}/>
+
+        <Route path="/search" element={
+            <Layout>
+              <h1>Search Results</h1>
+            </Layout>
+        }/>
+
+        <Route
+            path="*"
+            element={<Navigate to="/" replace />}
+        />
+
+        {/* home route */}
+        {/* <Route path="/" exact>
+          <Layout>
+            <HomeScreen />
+          </Layout>
+        </Route> */}
 
         {/* login route */}
-        <Route path="/auth">
+        {/* <Route path="/auth">
           <LoginScreen />
-        </Route>
+        </Route> */}
 
         {/* search route */}
-        <Route path="/search">
+        {/* <Route path="/search">
           <Layout>
             <h1>Search Results</h1>
           </Layout>
-        </Route>
+        </Route> */}
 
         {/*catching invalid route:2 options:1.show 404 page or 2.redirect to valid route */}
         {/* we will redirect to homepage */}
         {/* Route without any path, is default route*/}
-        <Route>
+        {/* <Route>
           <Redirect to="/"/>
-        </Route>
-      </Switch>
+        </Route> */}
+      </Routes>
     </Router>
   )
 }
