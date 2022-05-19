@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -8,11 +8,12 @@ import "./_app.scss";
 
 //react router setup
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
-  Navigate
+  Navigate,
+  useNavigate
 } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const Layout = ({ children }) => {
   const [sidebar, toggleSidebar] = useState(false);
@@ -39,8 +40,18 @@ const Layout = ({ children }) => {
 
 const App = () => {
 
+  const {accessToken,loading} = useSelector(state=>state.auth);
+
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!loading && !accessToken){
+      navigate("/auth");//to use this here we need to wrap App component using BrowserRouter
+    }
+  },[accessToken,loading,navigate]);
+
   return (
-    <Router>
+    
       <Routes>{/* same concept of switch last case is default one */}
 
         <Route path="/" element={
@@ -88,7 +99,7 @@ const App = () => {
           <Redirect to="/"/>
         </Route> */}
       </Routes>
-    </Router>
+    
   )
 }
 
