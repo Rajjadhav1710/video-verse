@@ -1,4 +1,6 @@
-import firebase from "firebase/app";
+import firebase from "firebase/compat/app";
+
+import "firebase/compat/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBvkmojJgbuUvZxj9V1U-u_Y9ikjxP3Cng",
@@ -12,3 +14,5 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 //thats it app is connected to firebase
+
+export default firebase.auth();
