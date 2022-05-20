@@ -1,29 +1,75 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./_video.scss";
 
 import {AiFillEye} from "react-icons/ai";
+import request from '../../api';
 
-const Video = () => {
+import moment from 'moment';
+import numeral from 'numeral';
+
+const Video = ({video}) => { 
+
+  const {id,snippet:{channelId,channelTitle,title,publishedAt,thumbnails:{medium}}} = video;
+
+  const [views,setViews]=useState(null);
+  const [duration,setDuration]=useState(null);
+
+  const [channelIcon,setChannelIcon]=useState(null);
+
+  const seconds = moment.duration(duration).asSeconds();
+  const _duration = moment.utc(seconds*1000).format("mm:ss");
+
+  useEffect(()=>{
+    const get_video_details =async ()=>{
+      const {data:{items}}=await request("/videos",{
+        params:{
+          part:"contentDetails,statistics",
+          id:id
+        }
+      });
+      // console.log(items);
+      setDuration(items[0].contentDetails.duration);
+      setViews(items[0].statistics.viewCount);
+    }
+
+    get_video_details();
+  },[id]);
+
+  useEffect(()=>{
+    const get_channel_icon =async ()=>{
+      const {data:{items}}=await request("/channels",{
+        params:{
+          part:"snippet",
+          id:channelId
+        }
+      });
+      // console.log(items);
+      setChannelIcon(items[0].snippet.thumbnails.default);
+    }
+
+    get_channel_icon();
+  },[channelId]);
+
   return (
     <div className="video">
       <div className="video__top">
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Marvel_Studios_Assembled_logo.jpg/250px-Marvel_Studios_Assembled_logo.jpg" alt="" />
-        <span>05:43</span>
+        <img src={medium.url} alt="" />
+        <span>{_duration}</span>
       </div>
       <div className="video__title">
-        create app in 5 minuites #made by chintu
+        {title}
       </div>
       <div className="video__details">
         <span>
-          <AiFillEye/>5m Views &nbsp;•&nbsp;
+          <AiFillEye/>{numeral(views).format("0.a")} Views &nbsp;•&nbsp;
         </span>
         <span>
-          5 days ago
+          {moment(publishedAt).fromNow()}
         </span>
       </div>
       <div className="video__channel">
-        <img src="https://lh3.googleusercontent.com/ogw/ADea4I6ZMeWCyHvJT4wR4KONajSHskU_d5FaK0biLT722RQ=s64-c-mo" alt="" />
-        <p>Rainbow hat jr</p>
+        <img src={channelIcon?.url} alt="" />
+        <p>{channelTitle}</p>
       </div>
     </div>
   )
