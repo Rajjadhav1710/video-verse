@@ -7,6 +7,10 @@ import { getPopularVideos, getVideosByCategory } from '../../redux/actions/video
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import SkeletonVideo from '../../components/skeletons/SkeletonVideo';
+
 const HomeScreen = () => {
 
   const dispatch = useDispatch();
@@ -15,7 +19,7 @@ const HomeScreen = () => {
     dispatch(getPopularVideos());
   },[dispatch]);
 
-  const {videos,activeCategory} = useSelector(state=>state.homeVideos);
+  const {videos,activeCategory,loading} = useSelector(state=>state.homeVideos);
 
   const fetchData = ()=>{
     if(activeCategory==="All")
@@ -35,11 +39,19 @@ const HomeScreen = () => {
             loader={<div className='spinner-border text-danger d-block mx-auto'></div>}
           >
               {
+                  !loading ? (
                   videos.map((video) => (
                   <Col lg={3} md={4} key={video.id}>
                       <Video video={video}/>
                   </Col>
                   ))
+                  ):(
+                    [...Array(20)].map(()=>(
+                      <Col lg={3} md={4}>
+                        <SkeletonVideo/>
+                      </Col>
+                    ))
+                  )
               }
           </InfiniteScroll>
         </Row>
