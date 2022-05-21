@@ -37,6 +37,7 @@ const HomeScreen = () => {
             next={fetchData}
             hasMore={true}
             loader={<div className='spinner-border text-danger d-block mx-auto'></div>}
+            style={{display:"flex",flexWrap:"wrap"}}
           >
               {
                   !loading ? (
