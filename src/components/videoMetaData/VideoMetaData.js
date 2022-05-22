@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import "./_videoMetaData.scss";
 
@@ -7,10 +7,25 @@ import moment from 'moment';
 
 import { MdThumbUp, MdThumbDown } from "react-icons/md";
 import ShowMoreText from 'react-show-more-text';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkSubscriptionStatus, getChannelDetails } from '../../redux/actions/channel.action';
+
 const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
 
     const {channelId,channelTitle,description,title,publishedAt} = snippet;
     const {viewCount,likeCount,dislikeCount} = statistics;
+
+    const dispatch = useDispatch();
+
+    const {snippet:channelSnippet,statistics:channelStatistics} = useSelector(state=>state.channelDetails.channel);
+
+    const subscriptionStatus = useSelector(state=>state.channelDetails.subscriptionStatus);
+    //destructuring by renaming
+
+    useEffect(()=>{
+        dispatch(getChannelDetails(channelId));
+        dispatch(checkSubscriptionStatus(channelId));
+    },[dispatch,channelId]);
 
     return (
         <div className="videoMetaData py-2">
@@ -36,17 +51,19 @@ const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
             <div className="videoMetaData__channel d-flex justify-content-between align-items-center my-2 py-3">
                 <div className="d-flex">
                     <img
-                        src="https://lh3.googleusercontent.com/ogw/ADea4I6ZMeWCyHvJT4wR4KONajSHskU_d5FaK0biLT722RQ=s64-c-mo"
+                        src={channelSnippet?.thumbnails?.default?.url}
                         alt=""
                         className='rounded-circle mr-3'
                     />
                     <div className="d-flex flex-column">
                         <span>{channelTitle}</span>
-                        <span>{numeral(100000).format("0.a")} Subscribers</span>
+                        <span>{numeral(channelStatistics?.subscriberCount).format("0.a")} Subscribers</span>
                     </div>
                 </div>
 
-                <button className="btn border-0 p-2 m-2">SUBSCRIBE</button>
+                <button className={`btn border-0 p-2 m-2 ${subscriptionStatus&&"btn-gray"}`}>
+                    {subscriptionStatus?"SUBSCRIBED":"SUBSCRIBE"}
+                </button>
             </div>
 
             <div className="videoMetaData__description">
