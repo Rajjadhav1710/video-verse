@@ -42,7 +42,7 @@ const WatchScreen = () => {
                     )
                 }
                 
-                <Comments />
+                <Comments videoId={id} totalComments = {video?.statistics?.commentCount}/>
             </Col>
             <Col lg={4}>
                 {

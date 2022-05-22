@@ -7,12 +7,14 @@ import {authReducer} from "./reducers/auth.reducer";
 import { homeVideosReducer } from "./reducers/videos.reducer";
 import { selectedVideoReducer } from "./reducers/videos.reducer";
 import { channelDetailsReducer } from "./reducers/channel.reducer";
+import { commentListReducer } from "./reducers/comments.reducer";
 
 const rootReducer = combineReducers({
     auth:authReducer,
     homeVideos:homeVideosReducer,
     selectedVideo:selectedVideoReducer,
-    channelDetails:channelDetailsReducer
+    channelDetails:channelDetailsReducer,
+    commentList:commentListReducer
 });
 
 const store = createStore(rootReducer,{},composeWithDevTools(applyMiddleware(thunk)));
