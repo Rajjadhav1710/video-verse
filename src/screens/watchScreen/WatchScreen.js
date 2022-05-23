@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Comments from '../../components/comments/Comments';
 import VideoHorizontal from '../../components/videoHorizontal/VideoHorizontal';
 import VideoMetaData from '../../components/videoMetaData/VideoMetaData';
-import { getVideoById } from '../../redux/actions/videos.action';
+import { getRelatedVideos, getVideoById } from '../../redux/actions/videos.action';
 
 import "./_watchScreen.scss";
 
@@ -17,9 +18,13 @@ const WatchScreen = () => {
 
     useEffect(()=>{
         dispatch(getVideoById(id));
+
+        dispatch(getRelatedVideos(id));
     },[dispatch,id]);
 
     const {video,loading} = useSelector(state=>state.selectedVideo);
+
+    const {videos,loading:relatedVideosLoading} = useSelector(state=>state.relatedVideos);
 
     return (
         <Row>
@@ -46,7 +51,18 @@ const WatchScreen = () => {
             </Col>
             <Col lg={4}>
                 {
-                    [...Array(10)].map(() => <VideoHorizontal />)
+                    !relatedVideosLoading 
+                    ? 
+                    videos?.filter((video)=>video.snippet
+                    ).map((video) => (
+                        <VideoHorizontal video={video} key={video.id.videoId}/>
+                    ))
+                    :
+                    <SkeletonTheme baseColor='#343a40' highlightColor='#3c4147'>
+                        <Skeleton width="100%" height="130px" count={15}/>
+                        {/* count represents number of skeletons we want */}
+                    </SkeletonTheme>
+
                 }
             </Col>
         </Row>
