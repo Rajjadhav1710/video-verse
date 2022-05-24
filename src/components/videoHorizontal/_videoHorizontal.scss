@@ -13,6 +13,11 @@
   &__thumbnail {
     width: 100%;
 
+    &-channel {
+      width: 50%;
+      border-radius: 50%;
+    }
+
     &-wrapper {
       width: 100%;
     }
@@ -78,9 +83,9 @@
       }
     }
 
-    // &__desc{
-    //     display: none;
-    // } //will use in search screen
+    &__desc {
+      display: none;
+    } //will use in search screen
 
     &__title {
       font-size: 1rem;

@@ -12,7 +12,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const VideoHorizontal = ({ video }) => {
+const VideoHorizontal = ({ video, searchScreen }) => {
   const {
     id,
     snippet: {
@@ -24,6 +24,8 @@ const VideoHorizontal = ({ video }) => {
       thumbnails: { medium },
     },
   } = video;
+
+  const isVideo = id.kind === "youtube#video";
 
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
@@ -71,9 +73,12 @@ const VideoHorizontal = ({ video }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    //TODO: handle channel click
-    navigate(`/watch/${id.videoId}`);
+    isVideo
+      ? navigate(`/watch/${id.videoId}`)
+      : navigate(`/channel/${id.channelId}`);
   };
+
+  const thumbnail = !isVideo && "videoHorizontal__thumbnail-channel";
 
   return (
     <Row
@@ -81,28 +86,37 @@ const VideoHorizontal = ({ video }) => {
       onClick={handleClick}
     >
       {/* TODO:refractor grid */}
-      <Col xs={6} md={6} className="videoHorizontal__left">
+      <Col xs={6} md={searchScreen ? 4 : 6} className="videoHorizontal__left">
         <LazyLoadImage
           src={medium.url}
-          className="videoHorizontal__thumbnail"
+          effect="blur"
+          className={`videoHorizontal__thumbnail ${thumbnail}`}
           wrapperClassName="videoHorizontal__thumbnail-wrapper"
         />
-        <span className="videoHorizontal__duration">{_duration}</span>
+        {isVideo && (
+          <span className="videoHorizontal__duration">{_duration}</span>
+        )}
       </Col>
 
-      <Col xs={6} md={6} className="videoHorizontal__right p-0">
+      <Col
+        xs={6}
+        md={searchScreen ? 8 : 6}
+        className="videoHorizontal__right p-0"
+      >
         <p className="videoHorizontal__title mb-1">{title}</p>
-        <div className="videoHorizontal__details">
-          <AiFillEye />
-          {numeral(views).format("0.a")} Views &nbsp;•&nbsp;
-          {moment(publishedAt).fromNow()}
-        </div>
+
+        {isVideo && (
+          <div className="videoHorizontal__details">
+            <AiFillEye />
+            {numeral(views).format("0.a")} Views &nbsp;•&nbsp;
+            {moment(publishedAt).fromNow()}
+          </div>
+        )}
+
+        {isVideo && <p className="mt-1 videoHorizontal__desc">{description}</p>}
+
         <div className="videoHorizontal__channel d-flex align-items-center my-1">
-          {/* TODO: show in search screen */}
-          {/* <LazyLoadImage
-            src="https://lh3.googleusercontent.com/ogw/ADea4I6ZMeWCyHvJT4wR4KONajSHskU_d5FaK0biLT722RQ=s64-c-mo"
-            effect="blur"
-          /> */}
+          {isVideo && <LazyLoadImage src={channelIcon?.url} effect="blur" />}
           {/* will use in search screen */}
           <p className="mb-0">{channelTitle}</p>
         </div>
