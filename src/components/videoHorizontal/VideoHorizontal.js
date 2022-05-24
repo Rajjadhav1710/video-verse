@@ -12,7 +12,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const VideoHorizontal = ({ video, searchScreen }) => {
+const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
+  //if subScreen is true means this component is going to be rendered in subscription screen
   const {
     id,
     snippet: {
@@ -22,16 +23,18 @@ const VideoHorizontal = ({ video, searchScreen }) => {
       title,
       publishedAt,
       thumbnails: { medium },
+      resourceId,
     },
   } = video;
 
-  const isVideo = id.kind === "youtube#video";
+  const isVideo = !(id.kind === "youtube#channel" || subScreen);
 
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
 
   const [channelIcon, setChannelIcon] = useState(null);
 
+  //we dont need this in subscription screen
   useEffect(() => {
     const get_video_details = async () => {
       const {
@@ -47,8 +50,8 @@ const VideoHorizontal = ({ video, searchScreen }) => {
       setViews(items[0].statistics.viewCount);
     };
 
-    get_video_details();
-  }, [id]);
+    if (isVideo) get_video_details();
+  }, [id, isVideo]);
 
   useEffect(() => {
     const get_channel_icon = async () => {
@@ -72,10 +75,12 @@ const VideoHorizontal = ({ video, searchScreen }) => {
 
   const navigate = useNavigate();
 
+  const _channelId = resourceId?.channelId || channelId;
+
   const handleClick = () => {
     isVideo
       ? navigate(`/watch/${id.videoId}`)
-      : navigate(`/channel/${id.channelId}`);
+      : navigate(`/channel/${_channelId}`);
   };
 
   const thumbnail = !isVideo && "videoHorizontal__thumbnail-channel";
@@ -86,7 +91,11 @@ const VideoHorizontal = ({ video, searchScreen }) => {
       onClick={handleClick}
     >
       {/* TODO:refractor grid */}
-      <Col xs={6} md={searchScreen ? 4 : 6} className="videoHorizontal__left">
+      <Col
+        xs={6}
+        md={searchScreen || subScreen ? 4 : 6}
+        className="videoHorizontal__left"
+      >
         <LazyLoadImage
           src={medium.url}
           effect="blur"
@@ -100,7 +109,7 @@ const VideoHorizontal = ({ video, searchScreen }) => {
 
       <Col
         xs={6}
-        md={searchScreen ? 8 : 6}
+        md={searchScreen || subScreen ? 8 : 6}
         className="videoHorizontal__right p-0"
       >
         <p className="videoHorizontal__title mb-1">{title}</p>
@@ -113,13 +122,19 @@ const VideoHorizontal = ({ video, searchScreen }) => {
           </div>
         )}
 
-        {isVideo && <p className="mt-1 videoHorizontal__desc">{description}</p>}
+        {(searchScreen || subScreen) && (
+          <p className="mt-1 videoHorizontal__desc">{description}</p>
+        )}
 
         <div className="videoHorizontal__channel d-flex align-items-center my-1">
           {isVideo && <LazyLoadImage src={channelIcon?.url} effect="blur" />}
           {/* will use in search screen */}
           <p className="mb-0">{channelTitle}</p>
         </div>
+
+        {subScreen && (
+          <p className="mt-2">{video.contentDetails.totalItemCount} Videos</p>
+        )}
       </Col>
     </Row>
   );

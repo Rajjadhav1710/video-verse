@@ -48,6 +48,10 @@
     @include line-clamp(2);
   }
 
+  &__desc {
+    @include line-clamp(2);
+  }
+
   &__channel {
     img {
       width: 36px;
