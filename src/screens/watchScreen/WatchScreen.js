@@ -13,6 +13,8 @@ import {
 
 import "./_watchScreen.scss";
 
+
+
 const WatchScreen = () => {
   const { id } = useParams();
 
@@ -32,6 +34,11 @@ const WatchScreen = () => {
 
   return (
     <Row>
+
+      {/* <Helmet>
+        <title>{video?.snippet?.title}</title>
+      </Helmet> */}
+
       <Col lg={8}>
         <div className="watchScreen__player">
           <iframe
@@ -68,6 +75,7 @@ const WatchScreen = () => {
           </SkeletonTheme>
         )}
       </Col>
+
     </Row>
   );
 };

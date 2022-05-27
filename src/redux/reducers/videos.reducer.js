@@ -1,4 +1,4 @@
-import { act } from "react-dom/test-utils";
+// import { act } from "react-dom/test-utils";
 import {
   CHANNEL_VIDEOS_FAIL,
   CHANNEL_VIDEOS_REQUEST,

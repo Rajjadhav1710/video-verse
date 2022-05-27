@@ -4,6 +4,8 @@ import { login } from "../../redux/actions/auth.action";
 import "./_loginScreen.scss";
 import { useNavigate } from "react-router-dom";
 
+import {FcGoogle} from "react-icons/fc";
+
 const LoginScreen = () => {
   const dispatch = useDispatch();
 
@@ -35,8 +37,8 @@ const LoginScreen = () => {
           alt="youtube-logo"
         />
 
-        <button onClick={handleLogin}>Login With Google</button>
-        <p>This Project Is Made Using YOUTUBE DATA API</p>
+        <button onClick={handleLogin}>Login With Google &nbsp;<FcGoogle size={23}/></button>
+        <p style={{textAlign:"center"}}>This Project Is Made Using Youtube Data Api</p>
       </div>
     </div>
   );

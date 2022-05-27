@@ -16,6 +16,15 @@
   top: 10vh;
   left: 0;
 
+  // Link is internally <a> tag
+  a {
+    color: $text-color;
+    text-decoration: none;
+    &:hover {
+      color: $text-color;
+    }
+  }
+
   li {
     display: flex;
     align-items: center;

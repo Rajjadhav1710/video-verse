@@ -33,19 +33,20 @@
     padding: 0.1rem;
     margin: 0 1rem;
     border-radius: 3px;
-    border: 1.2px solid;
+    // border: 1.2px solid;
     background-color: $black-secondary;
 
     input {
       width: 100%;
-      border: none;
+      border: 1px solid $border-color;
       font-weight: 500;
       background: transparent;
-      padding: 0.3rem;
+      padding: 0.4rem;
       color: $text-color;
 
       &:focus {
         outline: none;
+        border: 1px solid rgb(62, 166, 255);
       }
     }
 
@@ -54,6 +55,7 @@
       color: $text-color;
       background: transparent;
       border: none;
+      background-color: $border-color;
 
       &:focus {
         border: none;

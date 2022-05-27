@@ -7,6 +7,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { MdNotifications, MdApps } from "react-icons/md"; //md=material design
 
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = ({ handleToggleSidebar }) => {
   const [input, setInput] = useState("");
@@ -17,6 +18,8 @@ const Header = ({ handleToggleSidebar }) => {
     e.preventDefault();
     navigate(`/search/${input}`);
   };
+
+  const  photoURL  = useSelector(state=>state.auth?.user?.photoURL);
 
   return (
     <div className="header">
@@ -46,7 +49,7 @@ const Header = ({ handleToggleSidebar }) => {
         <MdNotifications size={28} />
         <MdApps size={28} />
         <img
-          src="https://lh3.googleusercontent.com/ogw/ADea4I6ZMeWCyHvJT4wR4KONajSHskU_d5FaK0biLT722RQ=s64-c-mo"
+          src={photoURL}
           alt="avatar"
         />
       </div>

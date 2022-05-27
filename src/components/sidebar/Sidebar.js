@@ -12,30 +12,32 @@ import {
 } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { log_out } from "../../redux/actions/auth.action";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ sidebar, handleToggleSidebar }) => {
   const dispatch = useDispatch();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const logOutHandler = () => {
     dispatch(log_out());
   };
 
-  const homeClickHandler = () => {
-    navigate("/");
-  };
+  // const homeClickHandler = () => {
+  //   navigate("/");
+  // };
 
   return (
     <nav
       className={sidebar ? "sidebar open" : "sidebar"}
       onClick={() => handleToggleSidebar(false)}
     >
-      <li onClick={homeClickHandler}>
-        <MdHome size={23} />
-        <span>Home</span>
-      </li>
+      <Link to="/">
+        <li>
+          <MdHome size={23} />
+          <span>Home</span>
+        </li>
+      </Link>
 
       <Link to="/feed/subscriptions">
         <li>
@@ -44,10 +46,13 @@ const Sidebar = ({ sidebar, handleToggleSidebar }) => {
         </li>
       </Link>
 
-      <li>
-        <MdThumbUp size={23} />
-        <span>Liked Videos</span>
-      </li>
+      {/* <Link> */}
+        <li>
+          <MdThumbUp size={23} />
+          <span>Liked Videos</span>
+        </li>
+      {/* </Link> */}
+
       <li>
         <MdHistory size={23} />
         <span>History</span>
@@ -57,6 +62,7 @@ const Sidebar = ({ sidebar, handleToggleSidebar }) => {
         <MdLibraryBooks size={23} />
         <span>Library</span>
       </li>
+
       <li>
         <MdSentimentDissatisfied size={23} />
         <span>I Don't Know</span>

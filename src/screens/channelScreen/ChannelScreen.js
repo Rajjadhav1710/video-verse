@@ -3,7 +3,6 @@ import { Col, Container, Row } from 'react-bootstrap';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import SkeletonVideo from '../../components/skeletons/SkeletonVideo';
 import Video from '../../components/video/Video';
 import { getChannelDetails } from '../../redux/actions/channel.action';
 import { getVideosByChannel } from '../../redux/actions/videos.action';

@@ -10,7 +10,6 @@ import {
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import SkeletonVideo from "../../components/skeletons/SkeletonVideo";
 

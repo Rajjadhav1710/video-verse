@@ -18,6 +18,7 @@ const Comments = ({ videoId, totalComments }) => {
   const [text, setText] = useState("");
 
   const comments = useSelector((state) => state.commentList.comments);
+  const { photoURL } = useSelector(state=>state.auth?.user);
 
   const _comments = comments?.map(
     (comment) => comment.snippet.topLevelComment.snippet
@@ -31,14 +32,15 @@ const Comments = ({ videoId, totalComments }) => {
     setText("");
   };
 
+  
   return (
     <div className="comments">
       <p>{totalComments} Comments</p>
 
       <div className="comments__form d-flex w-100 my-2">
         <img
-          src="https://lh3.googleusercontent.com/ogw/ADea4I6ZMeWCyHvJT4wR4KONajSHskU_d5FaK0biLT722RQ=s64-c-mo"
-          alt=""
+          src={photoURL}
+          alt="avatar"
           className="rounded-circle mr-3"
         />
         <form onSubmit={handleComment} className="d-flex flex-grow-1">

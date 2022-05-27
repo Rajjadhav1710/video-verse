@@ -20,6 +20,9 @@
       border: none;
       border-radius: 5px;
       margin-bottom: 1rem;
+      background: transparent;
+      color: rgb(62, 166, 255);
+      border: 1px solid rgb(62, 166, 255);
       &:focus {
         outline: none;
       }
