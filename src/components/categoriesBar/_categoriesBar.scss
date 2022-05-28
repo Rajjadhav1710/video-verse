@@ -1,7 +1,11 @@
 @import "../../_base.scss";
 
+// Dark Mode
+
 .categoriesBar {
-  padding: 0.5rem 0;
+  padding-bottom: 0;
+  padding-top: 1rem;
+
   font-size: 0.8rem;
 
   display: flex;
@@ -31,6 +35,30 @@
       color: #fff;
       background-color: #606060;
       border-color: $border-color;
+    }
+  }
+}
+
+
+// Light Mode
+
+.light.categoriesBar {
+  border-top: 1px solid $light-mode-border-color;
+  border-bottom: 1px solid $light-mode-border-color;
+  span {
+
+    border: 1.5px solid $light-mode-border-color;
+    background-color: $light-mode-white-secondary;
+    color: $light-mode-text-color;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &.active {
+      color: #fff;
+      background-color: black;
+      border-color: $light-mode-border-color;
     }
   }
 }

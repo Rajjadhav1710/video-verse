@@ -9,6 +9,8 @@ import Comment from "../comment/Comment";
 import "./_comments.scss";
 
 const Comments = ({ videoId, totalComments }) => {
+  const currentMode = useSelector(state=>state.toggleMode.mode);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +36,7 @@ const Comments = ({ videoId, totalComments }) => {
 
   
   return (
-    <div className="comments">
+    <div className={`comments ${currentMode}`}>
       <p>{totalComments} Comments</p>
 
       <div className="comments__form d-flex w-100 my-2">
@@ -45,7 +47,7 @@ const Comments = ({ videoId, totalComments }) => {
         />
         <form onSubmit={handleComment} className="d-flex flex-grow-1">
           <input
-            placeholder="Write a comment..."
+            placeholder="Add a comment…"
             type="text"
             className="flex-grow-1"
             value={text}

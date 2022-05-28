@@ -10,12 +10,17 @@ import {
   MdHome,
   MdSentimentDissatisfied,
 } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { log_out } from "../../redux/actions/auth.action";
 import { Link } from "react-router-dom";
 
+import DarkModeToggle from "react-dark-mode-toggle";
+import { TOGGLE_MODE } from "../../redux/actionType";
+
 const Sidebar = ({ sidebar, handleToggleSidebar }) => {
   const dispatch = useDispatch();
+
+  const currentMode = useSelector(state=>state.toggleMode.mode);
 
   // const navigate = useNavigate();
 
@@ -23,50 +28,57 @@ const Sidebar = ({ sidebar, handleToggleSidebar }) => {
     dispatch(log_out());
   };
 
+  const toggleMode = () => {
+    dispatch({
+      type:TOGGLE_MODE
+    });
+    localStorage.setItem("mode",currentMode==="dark"?"light":"dark");
+  }
+
   // const homeClickHandler = () => {
   //   navigate("/");
   // };
 
   return (
     <nav
-      className={sidebar ? "sidebar open" : "sidebar"}
-      onClick={() => handleToggleSidebar(false)}
+      className={sidebar ? `sidebar open ${currentMode}` : `sidebar ${currentMode}`}
+      // onClick={() => handleToggleSidebar(false)}
     >
       <Link to="/">
-        <li>
+        <li onClick={() => handleToggleSidebar(false)}>
           <MdHome size={23} />
           <span>Home</span>
         </li>
       </Link>
 
       <Link to="/feed/subscriptions">
-        <li>
+        <li onClick={() => handleToggleSidebar(false)}>
           <MdSubscriptions size={23} />
           <span>Subscriptions</span>
         </li>
       </Link>
 
       {/* <Link> */}
-        <li>
+        <li onClick={() => handleToggleSidebar(false)}>
           <MdThumbUp size={23} />
           <span>Liked Videos</span>
         </li>
       {/* </Link> */}
 
-      <li>
+      <li onClick={() => handleToggleSidebar(false)}>
         <MdHistory size={23} />
         <span>History</span>
       </li>
 
-      <li>
+      <li onClick={() => handleToggleSidebar(false)}>
         <MdLibraryBooks size={23} />
         <span>Library</span>
       </li>
 
-      <li>
+      {/* <li>
         <MdSentimentDissatisfied size={23} />
         <span>I Don't Know</span>
-      </li>
+      </li> */}
 
       <hr />
 
@@ -76,6 +88,15 @@ const Sidebar = ({ sidebar, handleToggleSidebar }) => {
       </li>
 
       <hr />
+
+      <li className="toggle-mode-container">
+        <DarkModeToggle
+          size={40}
+          onChange={toggleMode}
+          checked={currentMode==="dark"?true:false}
+        />
+      </li>
+
     </nav>
   );
 };

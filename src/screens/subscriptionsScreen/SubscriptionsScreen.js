@@ -9,6 +9,7 @@ import "./_subscriptionsScreen.scss";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const SubscriptionsScreen = () => {
+  const currentMode = useSelector(state=>state.toggleMode.mode);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const SubscriptionsScreen = () => {
           <VideoHorizontal video={video} key={video.id} subScreen />
         ))
       ) : (
-        <SkeletonTheme baseColor="#343a40" highlightColor="#3c4147">
+        <SkeletonTheme baseColor={currentMode==="dark"?"#343a40":"#DFDFDF"} highlightColor={currentMode==="dark"?"#3c4147":""}>
           <Skeleton width="100%" height="160px" count={20} />
           {/* count represents number of skeletons we want */}
         </SkeletonTheme>

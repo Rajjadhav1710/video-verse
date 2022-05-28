@@ -14,6 +14,7 @@ import {
 import { selectedVideoReducer } from "./reducers/videos.reducer";
 import { channelDetailsReducer } from "./reducers/channel.reducer";
 import { commentListReducer } from "./reducers/comments.reducer";
+import { toggleModeReducer } from "./reducers/mode.reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   relatedVideos: relatedVideoReducer,
   searchedVideos: searchedVideosReducer,
   subscriptionsChannel: subscriptionsChannelReducer,
-  channelVideos: channelVideosReducer
+  channelVideos: channelVideosReducer,
+  toggleMode: toggleModeReducer
 });
 
 const store = createStore(

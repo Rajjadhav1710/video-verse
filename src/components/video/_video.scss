@@ -1,5 +1,6 @@
 @import "../../_base.scss";
 
+// Drak Mode
 .video {
   margin-bottom: 1rem;
   padding: 0.7rem;
@@ -42,7 +43,7 @@
     // display: -webkit-box;
     // -webkit-line-clamp: 1;
     // -webkit-box-orient: vertical;
-    @include line-clamp(1);
+    @include line-clamp(2);
   }
 
   &__details {
@@ -69,3 +70,35 @@
     }
   }
 }
+
+// Light Mode
+.video.light {
+  background-color: #F3F3F3;
+  span{
+    border: none;
+    background: transparent;
+
+    &:hover{
+      background: transparent;
+    }
+  }
+
+  .video__title{
+    color: $light-mode-text-color;
+    font-weight:bold;
+  }
+
+  .video__details{
+    span{
+      color:rgb(96, 96, 96);
+    }
+  }
+
+  .video__channel{
+    p{
+      color:rgb(96, 96, 96);
+    }
+  }
+
+}
+

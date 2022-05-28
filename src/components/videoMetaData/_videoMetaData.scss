@@ -1,9 +1,13 @@
 @import "../../_base.scss";
 
 .videoMetaData {
+  padding-left: 1rem;
   &__top {
     span {
       cursor: pointer;
+    }
+    .likeSpan,.dislikeSpan{
+      margin: 0 0.5rem;
     }
   }
 
@@ -50,3 +54,28 @@
     }
   }
 }
+
+//light mode
+.light.videoMetaData{
+  color: $light-mode-text-color;
+
+  .videoMetaData__top {
+    .videoMetaData__top__statistics{
+      color: #606060 ;
+    }
+  }
+
+  .videoMetaData__channel {
+    border-top: 0.2px solid $light-mode-border-color;
+    border-bottom: 0.2px solid $light-mode-border-color;
+  }
+
+  .videoMetaData__description {
+    border-bottom: 0.2px solid $light-mode-border-color;
+
+    .showMoreText {
+      color: $light-mode-text-color;
+    }
+  }
+}
+

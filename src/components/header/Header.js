@@ -9,7 +9,8 @@ import { MdNotifications, MdApps } from "react-icons/md"; //md=material design
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const Header = ({ handleToggleSidebar }) => {
+const Header = ({ handleToggleSidebar }) => { 
+  const currentMode = useSelector(state=>state.toggleMode.mode);
   const [input, setInput] = useState("");
 
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Header = ({ handleToggleSidebar }) => {
   const  photoURL  = useSelector(state=>state.auth?.user?.photoURL);
 
   return (
-    <div className="header">
+    <div className={`header ${currentMode}`}>
       <FaBars
         className="header__menu"
         size={26}

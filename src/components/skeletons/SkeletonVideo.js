@@ -2,11 +2,13 @@ import React from "react";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useSelector } from "react-redux";
 
 const SkeletonVideo = () => {
+  const currentMode = useSelector(state=>state.toggleMode.mode);
   return (
     <div style={{ margin: "1rem" }}>
-      <SkeletonTheme baseColor="#343a40" highlightColor="#3c4147">
+      <SkeletonTheme baseColor={currentMode==="dark"?"#343a40":"#DFDFDF"} highlightColor={currentMode==="dark"?"#3c4147":""}>
         <Skeleton height={180} />
         <div>
           <Skeleton

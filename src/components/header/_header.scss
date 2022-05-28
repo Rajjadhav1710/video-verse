@@ -1,5 +1,7 @@
 @import "../../base.scss";
 
+// Dark Mode
+
 //styles for large screen
 .header {
   display: flex;
@@ -96,6 +98,44 @@
 
     &__icons > *:not(img) {
       display: none;
+    }
+  }
+}
+
+// Light Mode
+
+.light.header {
+
+  background-color: $light-mode-white-primary;
+  color: $light-mode-text-color;
+
+  form {
+    background-color: $light-mode-white-primary;
+
+    input {
+
+      border: 1px solid $light-mode-border-color;
+
+      background: transparent;
+
+      color: $light-mode-text-color;
+
+      &:focus {
+        outline: none;
+        border: 1px solid rgb(62, 166, 255);
+      }
+    }
+
+    button {
+
+      color: $light-mode-text-color;
+      background: transparent;
+      border: 1px solid $light-mode-border-color;
+      background-color:$light-mode-white-secondary;
+
+      &:focus {
+        border: 1px solid $light-mode-border-color;
+      }
     }
   }
 }

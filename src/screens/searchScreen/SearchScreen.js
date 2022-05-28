@@ -7,6 +7,7 @@ import VideoHorizontal from "../../components/videoHorizontal/VideoHorizontal";
 import { getVideosBySearch } from "../../redux/actions/videos.action";
 
 const SearchScreen = () => {
+  const currentMode = useSelector(state=>state.toggleMode.mode);
   const { query } = useParams();
   // console.log(query);
 
@@ -27,7 +28,7 @@ const SearchScreen = () => {
           // search screen is a boolean value to indicate this component is for search screen
         ))
       ) : (
-        <SkeletonTheme baseColor="#343a40" highlightColor="#3c4147">
+        <SkeletonTheme baseColor={currentMode==="dark"?"#343a40":"#DFDFDF"} highlightColor={currentMode==="dark"?"#3c4147":""}>
           <Skeleton width="100%" height="160px" count={20} />
           {/* count represents number of skeletons we want */}
         </SkeletonTheme>

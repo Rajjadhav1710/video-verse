@@ -1,4 +1,7 @@
 @import "../../_base.scss";
+
+// Dark Mode
+
 //for large screen
 .sidebar {
   background-color: $black-secondary;
@@ -45,6 +48,14 @@
     }
   }
 
+  .toggle-mode-container:hover{
+    background-color: $black-secondary;
+  }
+
+  .toggle-mode-container{
+    flex: 1;
+  }
+
   hr {
     background-color: $border-color;
   }
@@ -77,4 +88,39 @@
     position: fixed;
     z-index: 999;
   }
+}
+
+
+// Light Mode
+.light.sidebar  {
+  background-color: $light-mode-white-primary;
+
+  // Link is internally <a> tag
+  a {
+    color: $light-mode-text-color;
+    &:hover {
+      color: $light-mode-text-color;
+    }
+  }
+
+  li {
+    color: $light-mode-text-color;
+    span {
+      border: none;
+      background: transparent;
+    }
+
+    &:hover {
+      background-color: $light-mode-white-secondary;
+    }
+  }
+
+  .toggle-mode-container:hover{
+    background-color: $light-mode-white-primary;
+  }
+
+  hr {
+    background-color: $light-mode-border-color;
+  }
+
 }

@@ -6,4 +6,11 @@
 
 .app__main {
   overflow-x: hidden;
+  padding: 0 !important;
+}
+
+
+//light mode
+.app__main.light {
+  background-color: #F3F3F3;
 }

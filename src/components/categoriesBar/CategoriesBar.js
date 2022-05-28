@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getPopularVideos,
   getVideosByCategory,
@@ -28,6 +28,8 @@ const keywords = [
 const CategoriesBar = () => {
   const [activeElement, setActiveElement] = useState("All");
 
+  const currentMode = useSelector(state=>state.toggleMode.mode);
+
   const dispatch = useDispatch();
 
   const handleClick = (value) => {
@@ -41,7 +43,7 @@ const CategoriesBar = () => {
   };
 
   return (
-    <div className="categoriesBar">
+    <div className={`categoriesBar ${currentMode}`}>
       {keywords.map((value, i) => (
         <span
           onClick={() => handleClick(value)}

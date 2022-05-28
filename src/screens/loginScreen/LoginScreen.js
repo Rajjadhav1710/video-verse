@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import {FcGoogle} from "react-icons/fc";
 
 const LoginScreen = () => {
+  const currentMode = useSelector(state=>state.toggleMode.mode);
+
   const dispatch = useDispatch();
 
   const accessToken = useSelector((state) => state.auth.accessToken);
@@ -30,7 +32,7 @@ const LoginScreen = () => {
   }, [accessToken, navigate]);
 
   return (
-    <div className="login">
+    <div className={`login ${currentMode}`}>
       <div className="login__container">
         <img
           src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"

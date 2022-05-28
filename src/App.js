@@ -17,6 +17,8 @@ import ChannelScreen from "./screens/channelScreen/ChannelScreen";
 const Layout = ({ children }) => {
   const [sidebar, toggleSidebar] = useState(false);
 
+  const currentMode = useSelector(state=>state.toggleMode.mode);
+
   const handleToggleSidebar = () => toggleSidebar((value) => !value);
 
   return (
@@ -25,7 +27,7 @@ const Layout = ({ children }) => {
       <div className="app__container">
         <Sidebar sidebar={sidebar} handleToggleSidebar={handleToggleSidebar} />
 
-        <Container fluid className="app__main">
+        <Container fluid className={`app__main ${currentMode}`}>
           {children}
         </Container>
       </div>

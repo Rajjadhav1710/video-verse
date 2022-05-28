@@ -11,6 +11,7 @@ import numeral from 'numeral';
 import "./_channelScreen.scss";
 
 const ChannelScreen = () => {
+    const currentMode = useSelector(state=>state.toggleMode.mode);
 
     const {channelId}=useParams();
     const dispatch = useDispatch();
@@ -26,13 +27,13 @@ const ChannelScreen = () => {
     return (
         <>
             {/* channel details */}
-            <div className="px-5 py-2 my-2 d-flex justify-content-between align-items-center channelHeader">
+            <div className={`px-5 py-4 my-2 d-flex justify-content-between align-items-center channelHeader ${currentMode}`}>
                 <div className="d-flex align-items-center channelHeader__left">
                     <img src={snippet?.thumbnails?.default?.url} alt="" />
 
                     <div className="ml-3 channelHeader__details">
                         <h3>{snippet?.title}</h3>
-                        <span>
+                        <span className='statistics'>
                             {numeral(statistics?.subscriberCount).format('0.a')}{' '}subscribers
                         </span>
                     </div>
@@ -53,7 +54,7 @@ const ChannelScreen = () => {
                     ):(
                         [...Array(50)].map(() => (
                             <Col md={4} lg={3}>
-                                <SkeletonTheme baseColor="#343a40" highlightColor="#3c4147">
+                                <SkeletonTheme baseColor={currentMode==="dark"?"#343a40":"#DFDFDF"} highlightColor={currentMode==="dark"?"#3c4147":""}>
                                     <Skeleton width="100%" height="140px"/>
                                     {/* count represents number of skeletons we want */}
                                 </SkeletonTheme>

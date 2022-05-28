@@ -15,6 +15,8 @@ import {
 import HelmetCustom from "../helmetCustom/HelmetCustom";
 
 const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
+  const currentMode = useSelector(state=>state.toggleMode.mode);
+
   const { channelId, channelTitle, description, title, publishedAt } = snippet;
   const { viewCount, likeCount, dislikeCount } = statistics;
 
@@ -34,24 +36,24 @@ const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
   }, [dispatch, channelId]);
 
   return (
-    <div className="videoMetaData py-2">
+    <div className={`videoMetaData py-2 ${currentMode}`}>
       <HelmetCustom title={title} description={description}/>
       <div className="videoMetaData__top">
-        <h5>{title}</h5>
+        <h5 className="videoTitle">{title}</h5>
         <div className="d-flex justify-content-between align-items-center py-1">
-          <span>
+          <span className="videoMetaData__top__statistics">
             {numeral(viewCount).format("0.a")} Views &nbsp;•&nbsp;
             {moment(publishedAt).fromNow()}
           </span>
 
           <div>
-            <span className="mr-3">
-              <MdThumbUp size={26} />
+            <span className="likeSpan">
+              <MdThumbUp size={26} />&nbsp;
               {numeral(likeCount).format("0.a")}
             </span>
-            <span className="mr-3">
+            <span className="dislikeSpan">
               <MdThumbDown size={26} />
-              {numeral(dislikeCount).format("0.a")}
+              {/* {numeral(dislikeCount).format("0.a")} */}
             </span>
           </div>
         </div>

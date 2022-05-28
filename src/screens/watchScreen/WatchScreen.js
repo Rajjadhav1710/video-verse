@@ -16,6 +16,7 @@ import "./_watchScreen.scss";
 
 
 const WatchScreen = () => {
+  const currentMode = useSelector(state=>state.toggleMode.mode);
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -69,7 +70,7 @@ const WatchScreen = () => {
               <VideoHorizontal video={video} key={video.id.videoId} />
             ))
         ) : (
-          <SkeletonTheme baseColor="#343a40" highlightColor="#3c4147">
+          <SkeletonTheme baseColor={currentMode==="dark"?"#343a40":"#DFDFDF"} highlightColor={currentMode==="dark"?"#3c4147":""}>
             <Skeleton width="100%" height="130px" count={15} />
             {/* count represents number of skeletons we want */}
           </SkeletonTheme>

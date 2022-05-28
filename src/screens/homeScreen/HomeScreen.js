@@ -13,6 +13,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "react-loading-skeleton/dist/skeleton.css";
 import SkeletonVideo from "../../components/skeletons/SkeletonVideo";
 
+import "./_homeScreen.scss";
+
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
@@ -30,7 +32,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <Container>
+    <Container className="homeScreenContainer">
       <CategoriesBar />
       <Row>
         <InfiniteScroll
@@ -42,14 +44,15 @@ const HomeScreen = () => {
           // }
           style={{ display: "flex", flexWrap: "wrap" }}
         >
+          {/* Note: value of the key on list rendered by map function must be unique otherwise it will cause problems */}
           {!loading
             ? videos.map((video) => (
-                <Col lg={3} md={4} key={video.id}>
+                <Col lg={3} md={4} key={video?.id?.videoId || video.id}>
                   <Video video={video} />
                 </Col>
               ))
-            : [...Array(20)].map(() => (
-                <Col lg={3} md={4}>
+            : [...Array(20)].map((val,i) => (
+                <Col lg={3} md={4} key={i}>
                   <SkeletonVideo />
                 </Col>
               ))}

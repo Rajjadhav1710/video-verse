@@ -98,3 +98,33 @@
     }
   }
 }
+
+
+//light mode
+.light.videoHorizontal {
+  border-bottom: 0.5px solid $light-mode-border-color;
+
+
+  .videoHorizontal__title {
+    color: $light-mode-text-color;
+  }
+
+  .videoHorizontal__details{
+    color:rgb(96, 96, 96);
+  }
+
+  .videoHorizontal__channel{
+    p{
+      color:rgb(96, 96, 96);
+    }
+  }
+
+  .videoHorizontal__desc{
+    color: rgb(96, 96, 96);
+  }
+
+  .videoCount{
+    color: rgb(96, 96, 96);
+  }
+
+}

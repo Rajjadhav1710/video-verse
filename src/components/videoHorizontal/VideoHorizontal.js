@@ -11,8 +11,10 @@ import numeral from "numeral";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
+  const currentMode = useSelector(state=>state.toggleMode.mode);
   //if subScreen is true means this component is going to be rendered in subscription screen
   const {
     id,
@@ -87,7 +89,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
 
   return (
     <Row
-      className="videoHorizontal m-1 py-2 align-items-center"
+      className={`videoHorizontal m-1 py-2 align-items-center ${currentMode}`}
       onClick={handleClick}
     >
       {/* TODO:refractor grid */}
@@ -133,7 +135,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
         </div>
 
         {subScreen && (
-          <p className="mt-2">{video.contentDetails.totalItemCount} Videos</p>
+          <p className="mt-2 videoCount">{video.contentDetails.totalItemCount} Videos</p>
         )}
       </Col>
     </Row>

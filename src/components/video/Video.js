@@ -9,6 +9,7 @@ import numeral from "numeral";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Video = ({ video , channelScreen}) => {
   const {
@@ -22,6 +23,8 @@ const Video = ({ video , channelScreen}) => {
     },
     contentDetails
   } = video;
+
+  const currentMode = useSelector(state=>state.toggleMode.mode);
 
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
@@ -75,7 +78,7 @@ const Video = ({ video , channelScreen}) => {
   };
 
   return (
-    <div className="video" onClick={handleVideoClick}>
+    <div className={`video ${currentMode}`} onClick={handleVideoClick}>
       <div className="video__top">
         {/* <img src={medium.url} alt="" /> */}
         <LazyLoadImage src={medium.url} effect="blur" />
