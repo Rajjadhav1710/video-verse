@@ -145,7 +145,7 @@ export const getRelatedVideos = (id) => async (dispatch) => {
   }
 };
 
-export const getVideosBySearch = (keyword) => async (dispatch) => {
+export const getVideosBySearch = (keyword,filter) => async (dispatch) => {
   //getState function returns global store
   try {
     dispatch({
@@ -158,6 +158,7 @@ export const getVideosBySearch = (keyword) => async (dispatch) => {
         maxResults: 20,
         q: keyword,
         type: "video,channel",
+        order: filter
       },
     });
     console.log(data);

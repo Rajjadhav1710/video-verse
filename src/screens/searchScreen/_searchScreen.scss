@@ -1,0 +1,66 @@
+@import "../../_base.scss";
+
+.dropDownButton{
+    border-bottom: 0.3px solid #4c4c4c;
+    padding-top: 1rem;
+    padding-bottom: 0.2rem;
+    #dropdown-basic-button{
+        background: transparent;
+        border: none;
+        color: rgb(170, 170, 170);
+
+        &:focus{
+            box-shadow: none;
+        }
+
+        &:hover{
+            color: #fff;
+        }
+
+        &::after{
+            content: none;
+        }
+    }
+
+    .dropdown-menu{
+
+        .dropdown-item.active,.dropdown-item:focus{
+            background-color: #1d2229;
+            color: #fff;
+        }
+    }
+}
+
+//light mode
+.light.dropDownButton{
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.19);
+    #dropdown-basic-button{
+        background: transparent;
+        border: none;
+        color: #606060;
+
+        &:focus{
+            box-shadow: none;
+        }
+
+        &:hover{
+            color: $light-mode-text-color;
+        }
+
+        &::after{
+            content: none;
+        }
+    }
+
+    .dropdown-menu{
+        border: none;
+        .dropdown-item{
+            color: #606060;
+        }
+        
+        .dropdown-item.active,.dropdown-item:focus{
+            background-color: #dedede;
+            color: $light-mode-text-color;
+        }
+    }
+}
