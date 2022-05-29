@@ -1,5 +1,5 @@
 @import "../../base.scss";
-
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
 // Dark Mode
 
 //styles for large screen
@@ -8,7 +8,7 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 1rem 3rem;
+  padding: 1rem 2.5rem;
 
   background-color: $black-primary;
 
@@ -27,6 +27,14 @@
   &__logo {
     object-fit: contain;
     display: block;
+  }
+  
+  &__logoTitle{
+    margin-left: 0.3rem;
+    font-family: 'Fjalla One', sans-serif;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.2rem;
   }
 
   form {
@@ -93,6 +101,10 @@
     }
 
     &__logo {
+      display: none;
+    }
+
+    &__logoTitle{
       display: none;
     }
 

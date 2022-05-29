@@ -58,12 +58,12 @@ const Sidebar = ({ sidebar, handleToggleSidebar }) => {
         </li>
       </Link>
 
-      {/* <Link> */}
+      <Link to="/liked/videos">
         <li onClick={() => handleToggleSidebar(false)}>
           <MdThumbUp size={23} />
           <span>Liked Videos</span>
         </li>
-      {/* </Link> */}
+      </Link>
 
       <li onClick={() => handleToggleSidebar(false)}>
         <MdHistory size={23} />

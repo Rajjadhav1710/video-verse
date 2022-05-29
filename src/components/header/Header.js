@@ -30,7 +30,10 @@ const Header = ({ handleToggleSidebar }) => {
         onClick={() => handleToggleSidebar()}
       />
 
-      <img src={youtubeImage} alt="" className="header__logo" />
+      <div className="d-flex align-items-center">
+        <img src={youtubeImage} alt="" className="header__logo" />
+        <span className="header__logoTitle">VideoVerse</span>
+      </div>
 
       <form onSubmit={handleSubmit}>
         <input

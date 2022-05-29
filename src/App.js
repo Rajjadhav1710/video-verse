@@ -13,6 +13,7 @@ import WatchScreen from "./screens/watchScreen/WatchScreen";
 import SearchScreen from "./screens/searchScreen/SearchScreen";
 import SubscriptionsScreen from "./screens/subscriptionsScreen/SubscriptionsScreen";
 import ChannelScreen from "./screens/channelScreen/ChannelScreen";
+import LikedVideoScreen from "./screens/likedVideoScreen/LikedVideoScreen";
 
 const Layout = ({ children }) => {
   const [sidebar, toggleSidebar] = useState(false);
@@ -93,6 +94,15 @@ const App = () => {
         element={
           <Layout>
             <ChannelScreen/>
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/liked/videos"
+        element={
+          <Layout>
+            <LikedVideoScreen/>
           </Layout>
         }
       />

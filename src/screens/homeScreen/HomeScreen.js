@@ -52,7 +52,7 @@ const HomeScreen = () => {
                 </Col>
               ))
             : [...Array(20)].map((val,i) => (
-                <Col lg={3} md={4} key={i}>
+                <Col lg={3} md={4} xs={12} key={i}>
                   <SkeletonVideo />
                 </Col>
               ))}

@@ -29,6 +29,7 @@
 
       padding: 0.2rem;
       background: #080808ec;
+      color: #fff;
       border-radius: 3px;
     }
   }
@@ -81,6 +82,11 @@
     &:hover{
       background: transparent;
     }
+  }
+
+  .video__top__duration{
+    background: #080808ec;
+    color: #fff;
   }
 
   .video__title{

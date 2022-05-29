@@ -6,6 +6,9 @@ import {
   HOME_VIDEOS_FAIL,
   HOME_VIDEOS_REQUEST,
   HOME_VIDEOS_SUCCESS,
+  LIKED_VIDEOS_FAIL,
+  LIKED_VIDEOS_REQUEST,
+  LIKED_VIDEOS_SUCCESS,
   RELATED_VIDEO_FAIL,
   RELATED_VIDEO_REQUEST,
   RELATED_VIDEO_SUCCESS,
@@ -245,6 +248,39 @@ export const getVideosByChannel = (id) => async (dispatch) => {
     console.log(error.response.data.message);
     dispatch({
       type: CHANNEL_VIDEOS_FAIL,
+      payload: error.response.data,
+    });
+  }
+};
+
+
+export const getLikedVideos = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: LIKED_VIDEOS_REQUEST,
+    });
+
+    const { data } = await request("/videos", {
+      params: {
+        part: "snippet,contentDetails,statistics",
+        myRating: "like",
+        maxResults: 50,
+      },
+      headers: {
+        Authorization: `Bearer ${getState().auth.accessToken}`,
+      },
+    });
+    console.log("liked");
+    console.log(data);
+
+    dispatch({
+      type: LIKED_VIDEOS_SUCCESS,
+      payload: data.items
+    });
+  } catch (error) {
+    console.log(error.response.data.message);
+    dispatch({
+      type: LIKED_VIDEOS_FAIL,
       payload: error.response.data,
     });
   }
