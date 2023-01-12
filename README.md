@@ -1,70 +1,84 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# video-verse
 
-## Available Scripts
+◦ YouTube replica created using youtube data API where one can log in with his/her google account & browse just
+like youtube.
 
-In the project directory, you can run:
+◦ Build features to search & play videos, filter videos, comment on a video, see subscriptions, browse other channels, get
+trending videos etc. Implemented authentication using Firebase and Build private routes to restrict
+unauthenticated users from accessing data.
 
-### `npm start`
+◦ Improved the performance of the web app by optimizing image loading using the lazy load image component
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+◦ Deployed on firebase and Build CI/CD pipeline using GitHub actions that cut time to deploy from hours to
+minutes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Run Locally
 
-### `npm run build`
+Clone the project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  git clone https://github.com/Rajjadhav1710/video-verse.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Go to the project directory
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  cd video-verse
+```
 
-### `npm run eject`
+Install dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+  npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Start the server
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+  npm run start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Screenshots
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Screenshot (1854)](https://user-images.githubusercontent.com/66353781/212069732-9dd90e78-7c25-4b77-96e3-deb84865aaa4.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Screenshot (1855)](https://user-images.githubusercontent.com/66353781/212069734-94a29202-70dc-4ce2-8a1a-69590adde9d6.png)
 
-### Code Splitting
+![Screenshot (1856)](https://user-images.githubusercontent.com/66353781/212069737-f2dde7a6-8453-4eef-b9b9-b2774da43df7.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Screenshot (1857)](https://user-images.githubusercontent.com/66353781/212069749-54ee9923-2e03-4d4f-a539-dc81e640459a.png)
 
-### Analyzing the Bundle Size
+![Screenshot (1858)](https://user-images.githubusercontent.com/66353781/212069752-26d715ff-d784-4991-8ed3-76b99bc1a072.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Screenshot (1859)](https://user-images.githubusercontent.com/66353781/212069762-26dec1a2-dcf5-4a5e-a89f-c15deff24b55.png)
 
-### Making a Progressive Web App
+![Screenshot (1860)](https://user-images.githubusercontent.com/66353781/212069766-758044e1-992c-466a-ab0e-05733b4497f5.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Screenshot (1861)](https://user-images.githubusercontent.com/66353781/212069776-272247a6-4654-4d0d-9c03-ea55385c676a.png)
 
-### Advanced Configuration
+![Screenshot (1862)](https://user-images.githubusercontent.com/66353781/212069782-e11de644-c6be-4aaf-96ed-db8f101cae78.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Screenshot (1863)](https://user-images.githubusercontent.com/66353781/212069787-1f820b8a-8dfd-479f-bb17-e53b7fe534ec.png)
 
-### Deployment
+![Screenshot (1864)](https://user-images.githubusercontent.com/66353781/212069798-014ef3ce-3e26-4ff5-93d7-63c00494c6f5.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Screenshot (1865)](https://user-images.githubusercontent.com/66353781/212069804-28fad2d3-2ea8-4adf-98a0-3097e6c4f2a2.png)
 
-### `npm run build` fails to minify
+![Screenshot (1866)](https://user-images.githubusercontent.com/66353781/212069807-33fde694-f26b-498a-9bc7-b87a601d6b11.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Screenshot (1867)](https://user-images.githubusercontent.com/66353781/212069811-b5d04ad6-1f36-4c6c-a288-60808bcbf3c0.png)
+
+![Screenshot (1868)](https://user-images.githubusercontent.com/66353781/212069818-1d0279f5-a829-4ad4-8892-dc670263904e.png)
+
+![Screenshot (1869)](https://user-images.githubusercontent.com/66353781/212069822-c6b23466-29bd-40b4-9ad6-01e933d48235.png)
+
+
+## Tech Stack
+
+**Client:**  ReactJs, Redux, React Router Dom, Firebase Auth, YouTube Data API v3, Bootstrap,
+Sass (CSS extension language), etc.
+
